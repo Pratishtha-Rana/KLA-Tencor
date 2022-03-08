@@ -12,7 +12,7 @@ public class Milestone1{
         //Reading YAML file
         InputStream inputStream = new FileInputStream(new File("Milestone1A.yaml"));
         Yaml yaml = new Yaml();
-        Map<String, Object> data = yaml.load(inputStream);
+        Map<String,Map<String,Map<String,String>>> data = yaml.load(inputStream);
         System.out.println(data);
 
         //Appending a file
@@ -24,13 +24,13 @@ public class Milestone1{
 			e.printStackTrace();
     	}
 
-        Map<String,Object> hm1=new HashMap<>();
+        Map<String,Map<String,String>>> hm1=new HashMap<>();
         hm1=data.get("activities");
         char ch='A';
         for(int i=0;i<hm1.size()-1;i++){
-            HashMap<String,String> hm2=new HashMap<>();
-            hm2=hm1.get("Task"+ch);
-            TaskFunction(hm2);
+            Map<String,String> hm2=new HashMap<>();
+            hm2=hm1.get(("Task"+ch));
+            TaskFunction(hm1,hm2);
             ch++;
         }
     }
@@ -51,15 +51,15 @@ public class Milestone1{
 
     }
     
-    public static void dateTime(HashMap<String,String> hm2){
+    public static void TaskFunction(HashMap<String,Object> hm1,HashMap<String,Object> hm2){
         
         Date date=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         try{
             //Before
-	    BufferedWriter fileWriter = new BufferedWriter(new FileWriter("logfile.txt", true));
-	    fileWriter.append(formatter.format(date));
+			BufferedWriter fileWriter = new BufferedWriter(new FileWriter("logfile.txt", true));
+			fileWriter.append(formatter.format(date));
             fileWriter.append(";"+data.getKey(hm1)+" "+"Entry");
             fileWriter.newLine();
             fileWriter.append(formatter.format(date));
