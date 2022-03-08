@@ -53,11 +53,11 @@ public class Milestone1{
         Inputs inputs=new Inputs();
     }
     
-    public static void flow(){
+    public static void flow((HashMap<String,Object> hm1){
         private String type;
     }
     
-    public static void TaskFunction(HashMap<String,Object> hm1,HashMap<String,Object> hm2){
+    public static void TaskFunction(HashMap<String,String> hm1,HashMap<String,String> hm2){
         
         Date date=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -82,7 +82,7 @@ public class Milestone1{
             //After
             BufferedWriter fileWriter2 = new BufferedWriter(new FileWriter("logfile.txt", true));
             fileWriter2.append(formatter.format(date));
-            fileWriter.append(";"+data.getKey(hm1)+"."+data.getKey(hm2)+" "+"Exit");
+            fileWriter2.append(";"+data.getKey(hm1)+"."+data.getKey(hm2)+" "+"Exit");
             fileWriter2.newLine();
             fileWriter2.close();
         }
@@ -91,4 +91,3 @@ public class Milestone1{
         }
     
     }
-}
