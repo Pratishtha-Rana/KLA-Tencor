@@ -27,11 +27,17 @@ public class Milestone1{
         Map<String,Map<String,String>>> hm1=new HashMap<>();
         hm1=data.get("activities");
         char ch='A';
-        for(int i=0;i<hm1.size()-1;i++){
+        for(int i=0;i<hm1.size();i++){
             Map<String,String> hm2=new HashMap<>();
             hm2=hm1.get(("Task"+ch));
             TaskFunction(hm1,hm2);
             ch++;
+            if(data.get("Type")=="Flow"){
+                flow(hm1);
+            }
+            else{
+                task(hm2);
+            }
         }
     }
 
@@ -48,7 +54,7 @@ public class Milestone1{
     }
     
     public static void flow(){
-
+        private String type;
     }
     
     public static void TaskFunction(HashMap<String,Object> hm1,HashMap<String,Object> hm2){
