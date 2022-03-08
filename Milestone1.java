@@ -24,7 +24,15 @@ public class Milestone1{
 			e.printStackTrace();
     	}
 
-        for i in activities
+        Map<String,Object> hm1=new HashMap<>();
+        hm1=data.get("activities");
+        char ch='A';
+        for(int i=0;i<hm1.size()-1;i++){
+            HashMap<String,String> hm2=new HashMap<>();
+            hm2=hm1.get("Task"+ch);
+            TaskFunction(hm2);
+            ch++;
+        }
     }
 
     
@@ -39,27 +47,38 @@ public class Milestone1{
         Inputs inputs=new Inputs();
     }
     
+    public static void flow(){
+
+    }
     
-    public static void dateTime(int t){
+    public static void dateTime(HashMap<String,String> hm2){
+        
         Date date=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         try{
             //Before
-			BufferedWriter fileWriter = new BufferedWriter(new FileWriter("logfile.txt", true));
-			fileWriter.append(formatter.format(date));
-
-			fileWriter.newLine();
+	    BufferedWriter fileWriter = new BufferedWriter(new FileWriter("logfile.txt", true));
+	    fileWriter.append(formatter.format(date));
+            fileWriter.append(";"+data.getKey(hm1)+" "+"Entry");
+            fileWriter.newLine();
+            fileWriter.append(formatter.format(date));
+            fileWriter.append(";"+data.getKey(hm1)+"."+data.getKey(hm2)+" "+"Entry");
+            fileWriter.newLine();
+            fileWriter.append(formatter.format(date));
+            fileWriter.append(";"+data.getKey(hm1)+"."+data.getKey(hm2)+" "+"Executing TimeFunction "+"("+hm2.get("Inputs").get("FunctionInput")+", "+hm2.get("Inputs").get("ExecutionTime"));
+            fileWriter.newLine();
 			fileWriter.close();
             
             //Make computer sleep for sometime
-            Thread.sleep(t*1000);
+            Thread.sleep(hm2.get("Inputs").get("ExecutionTime")*1000);
 
             //After
-            BufferedWriter fileWriter = new BufferedWriter(new FileWriter("logfile.txt", true));
-            fileWriter.append(formatter.format(date));
-            fileWriter.newLine();
-            fileWriter.close();
+            BufferedWriter fileWriter2 = new BufferedWriter(new FileWriter("logfile.txt", true));
+            fileWriter2.append(formatter.format(date));
+            fileWriter.append(";"+data.getKey(hm1)+"."+data.getKey(hm2)+" "+"Exit");
+            fileWriter2.newLine();
+            fileWriter2.close();
         }
 		catch(IOException e){
             e.printStackTrace();
